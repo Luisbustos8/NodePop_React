@@ -1,0 +1,54 @@
+.loginPage {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  max-width: 600px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.loginForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: lightgreen;
+}
+
+.formField-Label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+}
+
+.formField-input {
+  width: 300px;
+  background-color: transparent;
+  font-size: 20px;
+  height: 36px;
+  outline-style: none;
+  padding: 2px 10px 5px 10px;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-color: green;
+}
+
+.loginForm-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 30px;
+  width: 200px;
+  border-color: green;
+  border-radius: 20px;
+  outline-style: none;
+}
+
+.register-button {
+  width: 200px;
+}
