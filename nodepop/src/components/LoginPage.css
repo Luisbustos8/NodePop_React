@@ -52,3 +52,12 @@
 .register-button {
   width: 200px;
 }
+
+.LoginPage-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+  font-family: ;
+  font-size: 30px;
+}
