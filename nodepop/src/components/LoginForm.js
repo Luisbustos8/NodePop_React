@@ -4,7 +4,7 @@ import FormField from './FormField';
 import Button from './shared/Button';
 
 
-function LoginForm({onSubmit}){
+function LoginForm({onSubmit, isLoading}){
 
  const [credentials, setCredentials] = React.useState({
    email: '',
@@ -50,7 +50,7 @@ function LoginForm({onSubmit}){
         type='submit'
       className="login-button"
       variant="primary"
-      disabled = { !email || !password } > Log In </Button>
+      disabled = {isLoading || !email || !password } > Log In </Button>
         
       </form>
   )

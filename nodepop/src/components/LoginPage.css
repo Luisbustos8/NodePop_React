@@ -11,7 +11,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: lightgreen;
 }
 
 .formField-Label {
@@ -22,6 +21,7 @@
   background-color: white;
   color: black;
   font-size: 12px;
+  margin-top: 10px;
 }
 
 .formField-input {
@@ -47,8 +47,8 @@
   border-color: green;
   border-radius: 20px;
   outline-style: none;
+  margin-top: 10px;
 }
-
 .register-button {
   width: 200px;
 }
@@ -60,4 +60,46 @@
   color: green;
   font-family: ;
   font-size: 30px;
+}
+
+.loginPage-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: red;
+  background-color: #f5baba;
+  color: red;
+  border-radius: 20px;
+  height: 30px;
+  border-top: 20px;
+  margin-top: 10px;
+}
+
+.select-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 30px;
+  border-radius: 20px;
+  border-color: green;
+  margin-top: 10px;
+  margin-left: 183px;
+  outline-style: none;
+}
+
+.h5-title {
+  display: flex;
+  justify-content: center;
+}
+
+.checkbox-form {
+  display: flex;
+  justify-content: center;
+}
+
+.file-form {
+  display: flex;
+  justify-content: center;
+  width: 700px;
 }

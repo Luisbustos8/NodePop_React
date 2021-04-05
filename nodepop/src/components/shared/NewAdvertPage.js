@@ -1,12 +1,29 @@
 import React from 'react';
-import './NewAdvertPage.css';
+import { publishAdvert } from '../../api/adverts';
+
 import Layout from '../layout/Layout';
+import NewAdvertForm from './NewAdvertForm';
 
 
 const NewAdvertPage = props => {
+
+    const [error, setError] = React.useState(null);
+    
+
+    const handleSubmit =  async advertData => {
+        console.log(advertData)
+        try {
+            setError(null);
+            await publishAdvert(advertData)
+        } catch (error) {
+            setError(error)
+        }
+    }
+
+
     return (
-        <Layout title= "Busca, compra y vende en NodePop" {...props}>
-            <div>New Advert Page</div>
+        <Layout title= "Sube tu producto y vendelo rapidísimo" {...props}>
+            <NewAdvertForm onSubmit={handleSubmit}/>
         </Layout>
     );
 };

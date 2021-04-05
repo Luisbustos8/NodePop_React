@@ -1,34 +1,29 @@
 import React from 'react'
 import classNames from 'classnames'
-
 import './Header.css'
 import Button from '../shared/Button'
+import AuthButton from '../shared/authButton'
 
 
-const Header = ({className, isLogged, ...props}) => {
+const Header = ({className, isLogged, onLogout, ...props}) => {
     return (
         <header className={classNames('header', className)}>
             <div className="header-logo">
             </div>
-            
             <nav className="header-nav">
-
-            {isLogged ? (
-                <Button
-                    className="Header-button"
-                    //onClick={()=> logout().then(onLogout)}
-                >
-                    Log out
-                </Button>
-            ) : (
                 <Button 
-                   // as={Link} 
-                   // to="/login" 
+                    //to="/newAdvert"
+                    variant="primary"
                     className="header-button"
+                    disabled={!isLogged}
                 >
-                    Login
-                </Button>    
-            )};
+                    Nuevo anuncio
+                </Button>
+                <AuthButton 
+                className="header-button"
+                isLogged={isLogged}
+                onLogout={onLogout}
+                />
             </nav>
         </header>
     )
