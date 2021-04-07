@@ -3,16 +3,21 @@ import classNames from 'classnames'
 import './Header.css'
 import Button from '../shared/Button'
 import AuthButton from '../shared/authButton'
+import {Link}  from 'react-router-dom'
 
 
 const Header = ({className, isLogged, onLogout, ...props}) => {
     return (
         <header className={classNames('header', className)}>
-            <div className="header-logo">
-            </div>
+            <Link to="/">
+                <div className="header-logo">
+                    N
+                </div>
+            </Link>
             <nav className="header-nav">
                 <Button 
-                    //to="/newAdvert"
+                    as={Link}
+                    to="/newAdvert"
                     variant="primary"
                     className="header-button"
                     disabled={!isLogged}

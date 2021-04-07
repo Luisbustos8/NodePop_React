@@ -1,5 +1,6 @@
 import Button from '../shared/Button';
 import {logout} from '../../api/auth';
+import {Link} from 'react-router-dom';
 
 const AuthButton = ({ className, isLogged, onLogout }) => {
 
@@ -9,8 +10,8 @@ const AuthButton = ({ className, isLogged, onLogout }) => {
     const props = isLogged 
     ? {onClick: handleLogoutClick, children: 'Log out'}
     : {
-        //as: Link,
-        // to: '/login',
+        as: Link,
+        to: '/login',
         children: 'Log in',
     };
 

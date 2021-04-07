@@ -58,7 +58,6 @@ function NewAdvertForm({onSubmit}) {
         setAdvertData({...advertData, tags}); 
     };
 
-
     const {name, sale, price, tags, photo} = advertData;
 
     return (
@@ -71,6 +70,7 @@ function NewAdvertForm({onSubmit}) {
             value={name}
             onChange={handleChangeAdvertData}
             />
+
             <SelectForm 
             className='select-form'
             name='sale'
@@ -79,13 +79,15 @@ function NewAdvertForm({onSubmit}) {
             />
             
             <FormField
-            type="text"
+            type="number"
             name="price"
             label="Precio"
             value={price}
             onChange={handleChangeAdvertData}
             />
+
             <h5 className='h5-title'> Selecciona el campo de tu producto...</h5>
+
             {checkboxList.map(label => {return (
                 <Checkbox
             className='checkbox-form'
@@ -103,6 +105,7 @@ function NewAdvertForm({onSubmit}) {
             value={photo}
             onChange={handleChangeAdvertData}
             />
+
             <Button
             type='submit'
             className='login-button'
