@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 
+ 
 
-const filter = () => {
+const Adverts = ( items, ...props) => {
 
-    const [product, setProduct] = useState(items);
-    const [price, setPrice] = useState('');
-    const [category, setCategory] = useState('all');
-
-
-
-
+    
+    return (
+        <div className='advertsP' {...props}>
+                    <div>
+                        {items}
+                    </div>
+                </div>
+    )
+    
 }
+export default Adverts;

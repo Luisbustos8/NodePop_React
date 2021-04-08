@@ -18,7 +18,9 @@ function App({isInitiallyLogged}) {
   return (
     <div className='App'>
       <Switch>
-          <PrivateRoute isLogged={isLogged} path="/advert" component={NewAdvertPage}/>
+          <PrivateRoute isLogged={isLogged} path="/advert">
+            <NewAdvertPage isLogged={isLogged} />
+          </PrivateRoute>
           <Route path="/login">
             {() => !isLogged ? <LoginPage onLogin={handleLogin} /> : <Redirect to="/"/>}
             </Route>

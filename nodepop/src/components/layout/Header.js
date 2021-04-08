@@ -7,6 +7,7 @@ import {Link}  from 'react-router-dom'
 
 
 const Header = ({className, isLogged, onLogout, ...props}) => {
+    console.log(isLogged)
     return (
         <header className={classNames('header', className)}>
             <Link to="/">

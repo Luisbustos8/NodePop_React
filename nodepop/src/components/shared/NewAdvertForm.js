@@ -12,7 +12,7 @@ function NewAdvertForm({onSubmit}) {
         sale: 'true',
         price: '',
         tags : [],
-        photo: '',
+        photo: null,
     });
 
     const handleChangeAdvertData = event => {
@@ -27,11 +27,16 @@ function NewAdvertForm({onSubmit}) {
     }
     const handleSubmit = event => {
         event.preventDefault();
-        onSubmit({
-            ...advertData, 
-            sale: advertData.sale === 'true' ? true : false
-        })
-        console.log(advertData)
+        const data = {
+            sale: advertData.sale === 'true' ? true : false,
+            name: advertData.name,
+            price: advertData.price, 
+            tags : advertData.tags,
+        }
+        if (advertData.photo) {
+            data['photo'] = advertData.photo
+        }
+        onSubmit(data)
     }
     
      const checkboxList = [
