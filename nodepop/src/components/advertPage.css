@@ -1,0 +1,22 @@
+.box {
+  box-shadow: 0 4px 8px 0 rgba(0, 128, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.titleAdvert {
+  color: green;
+}
+
+.price {
+  color: lightgreen;
+  font-size: 22px;
+}
+
+.tags {
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: green;
+  width: 80px;
+}

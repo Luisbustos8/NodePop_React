@@ -23,17 +23,15 @@ function NewAdvertForm({onSubmit}) {
             };
             return newAdvertData;
         })
+        
     }
     const handleSubmit = event => {
         event.preventDefault();
-        onSubmit(advertData);
-        /*
         onSubmit({
             ...advertData, 
             sale: advertData.sale === 'true' ? true : false
         })
-        */
-       
+        console.log(advertData)
     }
     
      const checkboxList = [
@@ -79,7 +77,7 @@ function NewAdvertForm({onSubmit}) {
             />
             
             <FormField
-            type="number"
+            type="text"
             name="price"
             label="Precio"
             value={price}

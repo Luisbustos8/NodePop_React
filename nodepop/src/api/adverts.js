@@ -1,4 +1,4 @@
-import client, { configureClient } from './client';
+import client from './client';
 
 const advertBaseUrl = '/api/v1';
 
@@ -9,7 +9,7 @@ export const getLatestAdverts = () => {
     return client.get(url);
 }
 
-export const publishAdvert = () => {
+export const publishAdvert = advertData => {
     const url = `${advertBaseUrl}/adverts`;
-    return client.post(url);
+    return client.post(url, advertData);
 }

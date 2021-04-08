@@ -4,6 +4,7 @@ import LoginPage from './components/LoginPage'
 import AdvertsPage from './components/AdvertsPage'
 import NewAdvertPage from './components/shared/NewAdvertPage';
 import {Switch, Route, Redirect}  from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 
 
 
@@ -17,13 +18,13 @@ function App({isInitiallyLogged}) {
   return (
     <div className='App'>
       <Switch>
-          <Route path="/advert" component={NewAdvertPage}/>
+          <PrivateRoute isLogged={isLogged} path="/advert" component={NewAdvertPage}/>
           <Route path="/login">
             {() => !isLogged ? <LoginPage onLogin={handleLogin} /> : <Redirect to="/"/>}
             </Route>
-          <Route exact path="/">
+          <PrivateRoute isLogged={isLogged} exact path="/">
             <AdvertsPage isLogged={isLogged} onLogout={handleLogout} /> 
-          </Route> 
+          </PrivateRoute> 
           <Route path="/404">
               <div
               style={{

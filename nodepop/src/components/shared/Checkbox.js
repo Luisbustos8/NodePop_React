@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import React from 'react';
 
 function Checkbox({label, className, handleChange, name}){

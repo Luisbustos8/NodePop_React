@@ -17,7 +17,7 @@ const Header = ({className, isLogged, onLogout, ...props}) => {
             <nav className="header-nav">
                 <Button 
                     as={Link}
-                    to="/newAdvert"
+                    to="/advert"
                     variant="primary"
                     className="header-button"
                     disabled={!isLogged}
