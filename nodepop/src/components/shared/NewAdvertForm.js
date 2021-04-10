@@ -22,8 +22,7 @@ function NewAdvertForm({onSubmit}) {
                 [event.target.name] : event.target.value,
             };
             return newAdvertData;
-        })
-        
+        })   
     }
     const handleSubmit = event => {
         event.preventDefault();

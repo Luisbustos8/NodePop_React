@@ -1,48 +1,56 @@
 import React, { useEffect } from 'react'
-import {getLatestAdverts} from '../api/adverts'
+import {getLatestAdverts, filteredAdverts} from '../api/adverts'
 import Layout from './layout/Layout';
-import './advertPage.css'
-import Adverts from './Filter';
+import './advertPage.css';
+import FilterForm from './FilterForm';
 
 
 
-const AdvertsPage = ({  ...props}) => {
+const AdvertsPage = ({ onFilteredAdvert, ...props}) => {
 
     const [adverts, setAdverts] = React.useState([]);
+    const [filterAdverts, setFilterAdverts] = React.useState([]);
+    const [error, setError] = React.useState(null);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const resetError = () => setError(null);
 
-    
-    const [filteredAdvert, setFilteredAdverts] = React.useState([]);
-
-    const [search, SetSearch] = React.useState('');
-    
-    
-    React.useEffect(() => {
-        getLatestAdverts().then(setAdverts);
-    }, [])
- /*
-    const filteredAdvert = () => {
-        getLatestAdverts().then(setAdverts);
-    }
-*/
-    useEffect(() => {
-        setFilteredAdverts(
-            adverts.filter((advert) => 
-            advert.name.toLowerCase().includes(search.toLowerCase())
-            )
-        );
-    }, [search, adverts]);
    
+
+
+    React.useEffect(() => {
+        if (handleFilterSubmit){
+            getLatestAdverts().then(setAdverts);
+        } else {
+            filteredAdverts().then(setFilterAdverts)
+        }
+        //filteredAdverts().then(setFilterAdverts)
+    }, []);
+
+    const handleFilterSubmit = async filterAdvert => {
+            
+        try {
+            setIsLoading(true);
+            setError(null);
+            await filteredAdverts(filterAdvert);
+            onFilteredAdvert(); 
+        } catch (error) {
+            setError(error);
+        } finally {
+            setIsLoading(false);
+        }     
+    };
+    
+
+
+    
     
     return (
         <Layout title="Busca, compra y vende en NodePop" {...props}>
-            <input
-            className='filterName' 
-            type='text'
-            placeholder='¿Qué estás buscando?'
-            />
+            <FilterForm onSubmit={handleFilterSubmit}/>
+            
             <div className='advertsP' {...props}  >
                     <div> 
-                        {adverts.map(advert => 
+                        { adverts.map(advert => 
                             <div className='box'>
                                 <h1 className='titleAdvert' key={advert.id}> {advert.name}</h1>
                                 <h3 className='price' key={advert.id}>{advert.price}€</h3>

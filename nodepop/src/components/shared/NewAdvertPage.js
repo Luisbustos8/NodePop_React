@@ -13,7 +13,6 @@ const NewAdvertPage = ({ onPublishAdvert,   ...props}) => {
     const handleSubmit = async advertData => {
         try {
             setIsLoading(true);
-            console.log('aqui', advertData)
             await publishAdvert(advertData);
             onPublishAdvert(); 
         } catch (error) {
