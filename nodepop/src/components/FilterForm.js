@@ -1,24 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import Checkbox from './shared/Checkbox';
 import Button from './shared/Button';
-
+import SelectForm from './shared/SelectForm';
+import './filterForm.css'
 
  
-function FilterForm({onSubmit, className}){
+function FilterForm({onSubmit}){
     
     const [filterAdvert, setFilterAdvert] = React.useState({
         name: '',
         tags: [],
-        sale: null, 
+        sale: '', 
         price: 0,
     });
     
     const handleFilterByName = event => {
         const newFilterAdvert = { 
             ...filterAdvert, 
-            name: event.target.value };
+            name: event.target.value,
+        };
         setFilterAdvert(newFilterAdvert);
     };
+    const handleFilterByPrice = event => {
+        const newFilterAdvert = { 
+            ...filterAdvert, 
+            price: event.target.value,
+        };
+        setFilterAdvert(newFilterAdvert);
+    };
+
+    const handleFilterBySale = event => {
+        const newFilterAdvert = {
+            ...filterAdvert,
+             sale: event.target.value === 'true' ? true : false
+        }
+        setFilterAdvert(newFilterAdvert)
+    }
 
     const handleSubmit = event => {
     event.preventDefault();
@@ -40,8 +57,6 @@ function FilterForm({onSubmit, className}){
         setFilterAdvert({...filterAdvert, tags}); 
     };
 
-    console.log(filterAdvert)
-
     const {name, tags, sale, price} = filterAdvert;
     const checkboxList = [
         'lifestyle', 
@@ -51,7 +66,7 @@ function FilterForm({onSubmit, className}){
     ]
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='filter'>
             <input
                 className='filterName' 
                 type='text'
@@ -59,9 +74,22 @@ function FilterForm({onSubmit, className}){
                 value={name}
                 onChange={handleFilterByName} 
              />
+            <input
+                className='filterPrice' 
+                type= 'number'
+                placeholder='Busca por precio'
+                min="0"
+                value={price}
+                onChange={handleFilterByPrice} 
+             />
+             <select  name='sale' className='select-form1' onChange={handleFilterBySale} >
+                <option defaultValue value={true} label='Venta'/>
+                <option value={false} label='Compra'/>
+            </select>
+            
             {checkboxList.map(label => {return (
                     <Checkbox
-                className={className}
+                className='checkboxForm'
                 name={label}
                 value={tags}
                 label={label}
@@ -70,7 +98,7 @@ function FilterForm({onSubmit, className}){
             )})}
             <Button
             type='submit'
-            className='login-button'
+            className='login-button1'
             variant='primary'
             >
             Filtrar 

@@ -17,23 +17,18 @@ export const publishAdvert = advertData => {
 }
 
 export const filteredAdverts = filterAdvert => {
-    const  filterAdvertURL = '/adverts?'
-    const filterName = 'name=${filterAdvert.name}'
-    const filterPrice = '&price=${filterAdvert.price}'
-    const filterSale = '&sale=${filterAdvert.sale}'
-    const filterTags = '&tags=${filterAdvert.tags}'
-    console.log('tufilterpapi', filterAdvert)
-    
-    if (!filterAdvert.name == "") {
-        filterAdvertURL.concat(filterName)
-    } if (filterAdvert.price >= 0) {
-        filterAdvertURL.concat(filterPrice)
-    } if (filterAdvert.sale === true || false) {
-        filterAdvertURL.concat(filterSale)
-    }if (filterAdvert.tags.length > 0 ) {
-        filterAdvertURL.concat(filterTags)
-    }
-    console.log('holi', filterAdvertURL)
-    const url = `${advertBaseUrl}`;
-    return client.get(url, filterAdvertURL);
-} 
+    let filterAdvertsUrl = '/adverts'
+    let isFirstParam = false
+
+    Object.keys(filterAdvert).forEach(filter => {
+        const operator = !isFirstParam ? '?' : '&'
+
+        if(filterAdvert[filter] && filterAdvert[filter].length > 0) {
+            filterAdvertsUrl += `${operator}${filter}=${filterAdvert[filter]}`
+            if (!isFirstParam) isFirstParam = true
+        }
+    })
+
+    const url = `${advertBaseUrl}${filterAdvertsUrl}`
+    return client.get(url);
+}
