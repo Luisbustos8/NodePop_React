@@ -16,12 +16,13 @@ function App({isInitiallyLogged}) {
   
   const handleLogout = () => setIsLogged(false);
 
-  return (
+
+   return (
     <div className='App'>
       <Switch>
           <PrivateRoute isLogged={isLogged} path="/advert/:advertId">
             {({history}) =>
-            <AdvertDetailPage isLogged={isLogged} history={history}  />
+            <AdvertDetailPage  isLogged={isLogged} onLogout={handleLogout} history={history}  />
           }
           </PrivateRoute>
           <PrivateRoute isLogged={isLogged} path="/advert">

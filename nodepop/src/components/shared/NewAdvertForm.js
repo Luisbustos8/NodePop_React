@@ -81,8 +81,9 @@ function NewAdvertForm({onSubmit}) {
             />
             
             <FormField
-            type="text"
+            type='number'
             name="price"
+            min="0"
             label="Precio"
             value={price}
             onChange={handleChangeAdvertData}

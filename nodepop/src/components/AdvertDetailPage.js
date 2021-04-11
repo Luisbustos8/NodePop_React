@@ -1,59 +1,62 @@
 
 import React from 'react';
-
-import {getAdvertDetail} from '../api/adverts';
+import {deleteAdvert, getAdvertDetail} from '../api/adverts';
 import Layout from './layout/Layout';
 import './advertDetailPage.css';
-
+import placeHolder from '../assets/unnamed.png'
+import Button from '../components/shared/Button';
+import { Redirect } from 'react-router';
 
 
 const AdvertDetailPage = ({onGetAdvertDetail, history, ...props}) => {
 
-    const [error, setError] = React.useState(null);
-    const [isLoading, setIsLoading] = React.useState(false);
     const [advertDetail, setAdvertDetail] = React.useState([]);
-
-    
+    const [advertDelete, setAdvertDelete ] = React.useState(false);
+    const [error, setError] = React.useState(false);
+ 
 
     let advertId = history.location.pathname;
     let advertsPageId = advertId.slice(8)
-    console.log(advertsPageId)
 
     React.useEffect( () => {
-        getAdvertDetail(advertsPageId).then(setAdvertDetail)
+        getAdvertDetail(advertsPageId).then(setAdvertDetail).catch(setError)
     },[])
 
-    console.log(advertDetail)
-    console.log(advertDetail.name)
+    const handleClickDelete = async () => {
+        await deleteAdvert(advertsPageId)
+        setAdvertDelete(true)
+    }
+    console.log(error)
+    console.log(advertDelete)
 
-    return (
-        <Layout >
-            <div handleAdvertId>
+    if (error && error.statusCode === 404){
+        return <Redirect to="/404" />
+    }
+
+    if (advertDelete) {
+        return <Redirect to='/' />
+    }
+
+
+ return (
+        <Layout {...props} >
+            <div handleAdvertId>             
                 <div className='card'>
                     <div className='cardPhoto'>
-                        <img src={advertDetail.photo === null ? '../assets/unnamed.png' : advertDetail.photo}/>
+                        <img className='img' src={advertDetail.photo || placeHolder}/>
                     </div>
-                    <h1 className='title'> {advertDetail.name} </h1>
-                    <h3 className='Precio'>{advertDetail.price} € </h3>
-                    <h3> Estado: {advertDetail.sale ? 'Vendo' : 'Compro'}</h3>
-                    <h5>{advertDetail.tags}</h5>
-
+                    <div className='cardtitle'>
+                        <h1 className='title'> {advertDetail.name} </h1>
+                        <h3 className='Precio'>{advertDetail.price} € </h3>
+                        <h3 className='state'> Estado: {advertDetail.sale ? 'Vendo' : 'Compro'}</h3>
+                        <h5 className='tag'>{advertDetail.tags}</h5> 
+                        <Button className='delete' onClick={handleClickDelete} to='/'> Borrar Anuncio </Button>    
+                    </div>
                 </div>
+                
                 
             </div>
         </Layout>
     )
 }
 export default AdvertDetailPage;
-
-/*
-<div class="card">
-                    <div class="card-image">
-                        <img src={advertDetail}>
-                        <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-                </div>
-*/

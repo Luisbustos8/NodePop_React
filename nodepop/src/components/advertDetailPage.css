@@ -6,5 +6,40 @@
 
 .cardPhoto {
   border: 3px solid;
-  width: 900px;
+  width: 450px;
+}
+
+.img {
+  width: 450px;
+  height: 295px;
+}
+
+.title {
+  display: flex;
+  color: green;
+  margin-left: 65px;
+}
+.Precio {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.state {
+  margin-left: 15px;
+}
+
+.tag {
+  margin-left: 10px;
+  border: 1px solid;
+  border-color: green;
+  border-radius: 10px;
+}
+
+.cardtitle  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete {
+  margin-left: 10px;
 }

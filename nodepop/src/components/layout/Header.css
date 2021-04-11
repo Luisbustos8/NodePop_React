@@ -2,18 +2,17 @@
   align-items: center;
   display: flex;
 }
-
+.logo {
+  margin-top: 20px;
+  height: 70px;
+  width: 70px;
+  text-decoration: none;
+}
 .header-logo {
   color: green;
   font-family: fantasy;
   font-size: 50px;
   font-weight: bold;
-  text-decoration: none;
-}
-
-.header-logo:hover {
-  color: white;
-  background-color: green;
   text-decoration: none;
 }
 
