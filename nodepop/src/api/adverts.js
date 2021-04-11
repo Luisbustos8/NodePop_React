@@ -3,9 +3,6 @@ import client from './client';
 const advertBaseUrl = '/api/v1';
 
 
-
-
-
 export const getLatestAdverts = () => {
     const url = `${advertBaseUrl}/adverts`;
     return client.get(url);
@@ -31,4 +28,9 @@ export const filteredAdverts = filterAdvert => {
 
     const url = `${advertBaseUrl}${filterAdvertsUrl}`
     return client.get(url);
+}
+
+export const getAdvertDetail = advertPageId => {
+    const url = `${advertBaseUrl}/adverts/${advertPageId}`
+    return client.get(url)
 }

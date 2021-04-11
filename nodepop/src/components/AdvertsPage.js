@@ -7,7 +7,7 @@ import Button from './shared/Button';
 import {Link}  from 'react-router-dom';
 
 
-const AdvertsPage = ({ onFilteredAdvert, ...props}) => {
+const AdvertsPage = ({ onFilteredAdvert, history, ...props}) => {
 
     const [adverts, setAdverts] = React.useState([]);
 
@@ -45,24 +45,30 @@ const AdvertsPage = ({ onFilteredAdvert, ...props}) => {
         } finally {
             setIsLoading(false);
         }     
-    };      
+    };   
+
     
+    const advertDetail = adverts.map(advert => advert.id)
+
+
     return (
         <Layout title="Busca, compra y vende en NodePop" {...props}>
             <FilterForm onSubmit={handleFilterSubmit}/>
             
             <div className='advertsP' {...props}  >
-                <div> 
-                    { adverts.length  ?
+                <div history={advertDetail} > 
+                    {adverts.length  ?
                      adverts.map(advert => 
-                        <div className='box' key={advert.id}>
+                        <Link style={{ textDecoration: 'none' }} to={`/advert/${advert.id}`} history={advertDetail}>
+                        <div className='box' key={advert.id} history={advert.id}>
                             <h1 className='titleAdvert'> {advert.name}</h1>
                             <h3 className='price'>{advert.price}€</h3>
                             <h3 key={advert.id}>Estado: { advert.sale ? 'Vendo' : 'Compro' } </h3>
                             <h3 className='tags'>{advert.tags}</h3>
                             <h6 key={advert.id}>{advert.createdAt}</h6>
-                         </div>) : <EmptyList/>}
-                    </div>
+                         </div> </Link>) : <EmptyList/>}
+                       
+                        </div>
                 </div>
             
         </Layout>

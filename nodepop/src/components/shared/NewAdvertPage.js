@@ -5,6 +5,7 @@ import Layout from '../layout/Layout';
 import NewAdvertForm from './NewAdvertForm';
 
 
+
 const NewAdvertPage = ({ onPublishAdvert,   ...props}) => {
 
     const [error, setError] = React.useState(null);
@@ -14,7 +15,7 @@ const NewAdvertPage = ({ onPublishAdvert,   ...props}) => {
         try {
             setIsLoading(true);
             await publishAdvert(advertData);
-            onPublishAdvert(); 
+            onPublishAdvert();
         } catch (error) {
             setError(error);
         } finally {
@@ -22,12 +23,13 @@ const NewAdvertPage = ({ onPublishAdvert,   ...props}) => {
         }
     };
 
-
     return (
         <Layout title= "Sube tu producto y vendelo rapidísimo" {...props}>
-            <NewAdvertForm  onSubmit={handleSubmit}/>
+            <NewAdvertForm  onSubmit={handleSubmit} />
         </Layout>
     );
 };
 
 export default NewAdvertPage;
+
+
