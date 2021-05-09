@@ -59,13 +59,13 @@ const AdvertsPage = ({ onFilteredAdvert, history, ...props}) => {
                 <div history={advertDetail} > 
                     {adverts.length  ?
                      adverts.map(advert => 
-                        <Link style={{ textDecoration: 'none' }} to={`/advert/${advert.id}`} history={advertDetail}>
-                        <div className='box' key={advert.id} history={advert.id}>
+                        <Link key={advert.id} style={{ textDecoration: 'none' }} to={`/advert/${advert.id}`} history={advertDetail}>
+                        <div className='box'  history={advert.id}>
                             <h1 className='titleAdvert'> {advert.name}</h1>
                             <h3 className='price'>{advert.price}€</h3>
-                            <h3 key={advert.id}>Estado: { advert.sale ? 'Vendo' : 'Compro' } </h3>
+                            <h3 >Estado: { advert.sale ? 'Vendo' : 'Compro' } </h3>
                             <h3 className='tags'>{advert.tags}</h3>
-                            <h6 key={advert.id}>{advert.createdAt}</h6>
+                            <h6 >{advert.createdAt}</h6>
                          </div> </Link>) : <EmptyList/>}
                        
                         </div>

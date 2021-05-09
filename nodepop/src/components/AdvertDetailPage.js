@@ -6,6 +6,9 @@ import './advertDetailPage.css';
 import placeHolder from '../assets/unnamed.png'
 import Button from '../components/shared/Button';
 import { Redirect } from 'react-router';
+import {useParams} from "react-router-dom";
+import swal from 'sweetalert';
+
 
 
 const AdvertDetailPage = ({onGetAdvertDetail, history, ...props}) => {
@@ -13,21 +16,30 @@ const AdvertDetailPage = ({onGetAdvertDetail, history, ...props}) => {
     const [advertDetail, setAdvertDetail] = React.useState([]);
     const [advertDelete, setAdvertDelete ] = React.useState(false);
     const [error, setError] = React.useState(false);
- 
 
-    let advertId = history.location.pathname;
-    let advertsPageId = advertId.slice(8)
+    let {advertId} = useParams()
+  
 
     React.useEffect( () => {
-        getAdvertDetail(advertsPageId).then(setAdvertDetail).catch(setError)
+        getAdvertDetail(advertId).then(setAdvertDetail).catch(setError)
     },[])
 
     const handleClickDelete = async () => {
-        await deleteAdvert(advertsPageId)
+        const showConfirmation = () => {
+            swal({
+                title: 'Eliminar anuncio',
+                text: '¿Estás seguro que quieres eliminar este anuncio?',
+                buttons: ['No', 'Si']
+            }).then(response => {
+                if(response) {
+                    swal({text: "El anuncio se ha borrado con éxito"})
+                }
+            })
+        }
+        await deleteAdvert(advertId)
         setAdvertDelete(true)
     }
-    console.log(error)
-    console.log(advertDelete)
+   
 
     if (error && error.statusCode === 404){
         return <Redirect to="/404" />

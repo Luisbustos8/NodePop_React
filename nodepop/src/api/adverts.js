@@ -18,17 +18,43 @@ export const filteredAdverts = filterAdvert => {
     let isFirstParam = false
 
     Object.keys(filterAdvert).forEach(filter => {
-        const operator = !isFirstParam ? '?' : '&'
-
+        let operator = !isFirstParam ? '?' : '&'
+    
         if(filterAdvert[filter] && filterAdvert[filter].length > 0) {
-            filterAdvertsUrl += `${operator}${filter}=${filterAdvert[filter]}`
-            if (!isFirstParam) isFirstParam = true
+            if (Array.isArray(filterAdvert[filter])){
+                
+                for (const element of filterAdvert[filter]) {
+                    operator =  !isFirstParam ? '?' : '&'
+                    filterAdvertsUrl += `${operator}${filter}=${element}`
+                     if (!isFirstParam) isFirstParam = true
+                }
+                
+            } else {
+                filterAdvertsUrl += `${operator}${filter}=${filterAdvert[filter]}`
+                if (!isFirstParam) isFirstParam = true
+            }
         }
     })
 
     const url = `${advertBaseUrl}${filterAdvertsUrl}`
     return client.get(url);
 }
+// export const filteredAdverts = filterAdvert => {
+//     let filterAdvertsUrl = '/adverts'
+//     let isFirstParam = false
+
+//     Object.keys(filterAdvert).forEach(filter => {
+//         const operator = !isFirstParam ? '?' : '&'
+
+//         if(filterAdvert[filter] && filterAdvert[filter].length > 0) {
+//             filterAdvertsUrl += `${operator}${filter}=${filterAdvert[filter]}`
+//             if (!isFirstParam) isFirstParam = true
+//         }
+//     })
+
+//     const url = `${advertBaseUrl}${filterAdvertsUrl}`
+//     return client.get(url);
+// }
 
 export const getAdvertDetail = advertPageId => {
     const url = `${advertBaseUrl}/adverts/${advertPageId}`

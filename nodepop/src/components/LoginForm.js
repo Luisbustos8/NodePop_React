@@ -2,6 +2,7 @@ import React from 'react';
 import './LoginPage.css';
 import FormField from './FormField';
 import Button from './shared/Button';
+import Checkbox from './checkbox';
 
 
 function LoginForm({onSubmit, isLoading}){
@@ -10,6 +11,8 @@ function LoginForm({onSubmit, isLoading}){
    email: '',
    password: '',
  });
+ 
+ const [rememberMe, setRememberMe] = React.useState(false);
 
  const handleChangeLogin = event => {
    setCredentials(oldCredentials => {
@@ -23,7 +26,7 @@ function LoginForm({onSubmit, isLoading}){
   
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit(credentials);
+    onSubmit(credentials, rememberMe);
   };
 
   const {email, password} = credentials;
@@ -51,6 +54,8 @@ function LoginForm({onSubmit, isLoading}){
       className="login-button"
       variant="primary"
       disabled = {isLoading || !email || !password } > Log In </Button>
+
+      <Checkbox handleChange={setRememberMe} ></Checkbox>
         
       </form>
   )
