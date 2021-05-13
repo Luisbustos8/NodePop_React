@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Checkbox from './shared/Checkbox';
 import Button from './shared/Button';
 import './filterForm.css'
-
+import T from 'prop-types';
 
  
 function FilterForm({onSubmit}){
@@ -155,6 +155,10 @@ function FilterForm({onSubmit}){
         </form>
             
     )
+}
+
+FilterForm.propTypes = {
+    onSubmit: T.func.isRequired,
 }
 
 export default FilterForm;

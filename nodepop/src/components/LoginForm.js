@@ -3,6 +3,7 @@ import './LoginPage.css';
 import FormField from './FormField';
 import Button from './shared/Button';
 import Checkbox from './checkbox';
+import T from 'prop-types';
 
 
 function LoginForm({onSubmit, isLoading}){
@@ -60,5 +61,12 @@ function LoginForm({onSubmit, isLoading}){
       </form>
   )
   }
+
+  LoginForm.propTypes = {
+    onSubmit: T.func.isRequired, 
+    isLoading: T.bool.isRequired,
+  };
+
+  
 
 export default LoginForm;

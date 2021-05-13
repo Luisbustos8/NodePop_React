@@ -7,7 +7,7 @@ import placeHolder from '../assets/unnamed.png'
 import Button from '../components/shared/Button';
 import { Redirect } from 'react-router';
 import {useParams} from "react-router-dom";
-import swal from 'sweetalert';
+
 
 
 
@@ -25,22 +25,12 @@ const AdvertDetailPage = ({onGetAdvertDetail, history, ...props}) => {
     },[])
 
     const handleClickDelete = async () => {
-        const showConfirmation = () => {
-            swal({
-                title: 'Eliminar anuncio',
-                text: '¿Estás seguro que quieres eliminar este anuncio?',
-                buttons: ['No', 'Si']
-            }).then(response => {
-                if(response) {
-                    swal({text: "El anuncio se ha borrado con éxito"})
-                }
-            })
+        if (window.confirm('Estás seguro que quieres borrar el anuncio?')) {
+            await deleteAdvert(advertId)
+            setAdvertDelete(true)
         }
-        await deleteAdvert(advertId)
-        setAdvertDelete(true)
     }
    
-
     if (error && error.statusCode === 404){
         return <Redirect to="/404" />
     }

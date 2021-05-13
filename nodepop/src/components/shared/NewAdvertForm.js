@@ -4,6 +4,8 @@ import FormField from '../FormField';
 import Button from '../shared/Button';
 import Checkbox from './Checkbox';
 import SelectForm from './SelectForm';
+import T from 'prop-types';
+
 
 function NewAdvertForm({onSubmit}) {
 
@@ -12,7 +14,7 @@ function NewAdvertForm({onSubmit}) {
         sale: 'true',
         price: '',
         tags : [],
-        photo: null,
+        photo:  '',
     });
 
     const handleChangeAdvertData = event => {
@@ -21,10 +23,14 @@ function NewAdvertForm({onSubmit}) {
                 ...oldAdvertData,
                 [event.target.name] : event.target.value,
             };
+            if (advertData.photo){
+                oldAdvertData.append(file)
+            }
+            
             return newAdvertData;
         })   
     }
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         const data = {
             sale: advertData.sale === 'true' ? true : false,
@@ -32,6 +38,7 @@ function NewAdvertForm({onSubmit}) {
             price: advertData.price, 
             tags : advertData.tags,
         }
+         
         if (advertData.photo) {
             data['photo'] = advertData.photo
         }
@@ -45,6 +52,22 @@ function NewAdvertForm({onSubmit}) {
         'work'
     ]
 
+   
+    const [file, setFile] = React.useState();
+
+    const handleChange = event => {
+        
+        const file = event.target.files[0].name;
+        setFile(file);
+        console.log('aqui', advertData)
+        setAdvertData({...advertData, photo})
+    }
+    
+
+    
+
+    
+   
     const setTag = event => {
         const tags = advertData.tags
         if(event.target.checked) {
@@ -57,13 +80,15 @@ function NewAdvertForm({onSubmit}) {
                 tags.splice(index, 1)
             }
         }
-        setAdvertData({...advertData, tags}); 
+        setAdvertData({...advertData, tags});
+       
     };
 
     const {name, sale, price, tags, photo} = advertData;
 
+
     return (
-        <form className="loginForm" onSubmit={handleSubmit}>
+        <form className="loginForm" onSubmit={handleSubmit} encType='content-type'>
             <FormField
             type="text"
             name="name"
@@ -100,13 +125,15 @@ function NewAdvertForm({onSubmit}) {
             handleChange={setTag}
             />
             )})}
-            
+          
             <FormField
             className='file-form'
             type="file"
             name="photo"
-            value={photo}
-            onChange={handleChangeAdvertData}
+            
+            value={advertData.photo}
+            onChange={handleChange}
+            
             />
 
             <Button
@@ -114,9 +141,14 @@ function NewAdvertForm({onSubmit}) {
             className='login-button'
             variant='primary'
             disabled = { !name  || !price || !tags }
+            
             > Subir Anuncio </Button>
         </form>
     )
 }
+
+NewAdvertForm.propTypes = {
+    onSubmit: T.func.isRequired,
+};
 
 export default NewAdvertForm;

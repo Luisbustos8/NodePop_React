@@ -9,8 +9,17 @@ export const getLatestAdverts = () => {
 }
 
 export const publishAdvert = advertData => {
-    const url = `${advertBaseUrl}/adverts`;
-    return client.post(url, advertData);
+   const axios = ({
+        method: 'post',
+        url:  `${advertBaseUrl}/adverts`,
+        data: advertData,
+        headers: { "Content-Type": "multipart/form-data" },
+    })
+    
+    return client.post(axios.url, axios.data, axios.headers)
+
+
+    // return client.post(url, advertData);
 }
 
 export const filteredAdverts = filterAdvert => {
@@ -39,22 +48,6 @@ export const filteredAdverts = filterAdvert => {
     const url = `${advertBaseUrl}${filterAdvertsUrl}`
     return client.get(url);
 }
-// export const filteredAdverts = filterAdvert => {
-//     let filterAdvertsUrl = '/adverts'
-//     let isFirstParam = false
-
-//     Object.keys(filterAdvert).forEach(filter => {
-//         const operator = !isFirstParam ? '?' : '&'
-
-//         if(filterAdvert[filter] && filterAdvert[filter].length > 0) {
-//             filterAdvertsUrl += `${operator}${filter}=${filterAdvert[filter]}`
-//             if (!isFirstParam) isFirstParam = true
-//         }
-//     })
-
-//     const url = `${advertBaseUrl}${filterAdvertsUrl}`
-//     return client.get(url);
-// }
 
 export const getAdvertDetail = advertPageId => {
     const url = `${advertBaseUrl}/adverts/${advertPageId}`
