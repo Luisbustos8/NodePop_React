@@ -32,17 +32,22 @@ function NewAdvertForm({onSubmit}) {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
+        const photo = file;
+     
         const data = {
             sale: advertData.sale === 'true' ? true : false,
             name: advertData.name,
             price: advertData.price, 
             tags : advertData.tags,
+            photo: photo, 
         }
-         
         if (advertData.photo) {
             data['photo'] = advertData.photo
+
         }
+       console.log(data);
         onSubmit(data)
+       
     }
     
      const checkboxList = [
@@ -59,8 +64,6 @@ function NewAdvertForm({onSubmit}) {
         
         const file = event.target.files[0].name;
         setFile(file);
-        console.log('aqui', advertData)
-        setAdvertData({...advertData, photo})
     }
     
 

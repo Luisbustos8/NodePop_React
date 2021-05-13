@@ -9,6 +9,13 @@ export const getLatestAdverts = () => {
 }
 
 export const publishAdvert = advertData => {
+    // const headers = "Content-Type: multipart/form-data"
+    // const url = `${advertBaseUrl}/adverts`;
+    // if (advertData.photo){
+    //     return client.post(url, headers, advertData)
+    // }
+    // console.log(advertData.photo)
+    // return client.post(url, advertData);
    const axios = ({
         method: 'post',
         url:  `${advertBaseUrl}/adverts`,
@@ -19,7 +26,6 @@ export const publishAdvert = advertData => {
     return client.post(axios.url, axios.data, axios.headers)
 
 
-    // return client.post(url, advertData);
 }
 
 export const filteredAdverts = filterAdvert => {
