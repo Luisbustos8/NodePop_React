@@ -18,6 +18,7 @@ const AdvertDetailPage = ({onGetAdvertDetail, history, ...props}) => {
     const [error, setError] = React.useState(false);
 
     let {advertId} = useParams()
+    
   
 
     React.useEffect( () => {
@@ -38,6 +39,8 @@ const AdvertDetailPage = ({onGetAdvertDetail, history, ...props}) => {
     if (advertDelete) {
         return <Redirect to='/' />
     }
+
+    console.log(advertDetail.name)
 
 
  return (

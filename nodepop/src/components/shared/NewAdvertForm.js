@@ -14,7 +14,7 @@ function NewAdvertForm({onSubmit}) {
         sale: 'true',
         price: '',
         tags : [],
-        photo:  '',
+        photo:  null,
     });
 
     const handleChangeAdvertData = event => {
@@ -39,15 +39,11 @@ function NewAdvertForm({onSubmit}) {
             name: advertData.name,
             price: advertData.price, 
             tags : advertData.tags,
-            photo: photo, 
         }
-        if (advertData.photo) {
-            data['photo'] = advertData.photo
-
+        if (photo) {
+            data['photo'] = photo
         }
-       console.log(data);
-        onSubmit(data)
-       
+        onSubmit(data)   
     }
     
      const checkboxList = [
@@ -62,15 +58,11 @@ function NewAdvertForm({onSubmit}) {
 
     const handleChange = event => {
         
-        const file = event.target.files[0].name;
+        const file = event.target.files[0];
+        console.log({file})
         setFile(file);
     }
-    
-
-    
-
-    
-   
+      
     const setTag = event => {
         const tags = advertData.tags
         if(event.target.checked) {

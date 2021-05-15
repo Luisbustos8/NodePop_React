@@ -9,23 +9,16 @@ export const getLatestAdverts = () => {
 }
 
 export const publishAdvert = advertData => {
-    // const headers = "Content-Type: multipart/form-data"
-    // const url = `${advertBaseUrl}/adverts`;
-    // if (advertData.photo){
-    //     return client.post(url, headers, advertData)
-    // }
-    // console.log(advertData.photo)
-    // return client.post(url, advertData);
-   const axios = ({
-        method: 'post',
-        url:  `${advertBaseUrl}/adverts`,
-        data: advertData,
-        headers: { "Content-Type": "multipart/form-data" },
+    const url = `${advertBaseUrl}/adverts`;
+    const formData = new FormData();
+    for (let item in advertData) {
+        formData.append(item, advertData[item]);
+    }
+    return client.post(url, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
     })
-    
-    return client.post(axios.url, axios.data, axios.headers)
-
-
 }
 
 export const filteredAdverts = filterAdvert => {
