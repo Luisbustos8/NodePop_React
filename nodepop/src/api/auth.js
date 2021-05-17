@@ -3,7 +3,6 @@ import client, {configureClient, resetClient} from './client';
 
 
 export const register = credentials => {
-    console.log(register)
     return client.post('/api/auth/signup', credentials)
 };
 

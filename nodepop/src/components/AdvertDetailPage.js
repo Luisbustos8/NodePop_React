@@ -40,7 +40,7 @@ const AdvertDetailPage = ({onGetAdvertDetail, history, ...props}) => {
         return <Redirect to='/' />
     }
 
-    console.log(advertDetail.name)
+   
 
 
  return (

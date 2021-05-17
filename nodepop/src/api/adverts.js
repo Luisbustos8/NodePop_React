@@ -6,7 +6,12 @@ const advertBaseUrl = '/api/v1';
 export const getLatestAdverts = () => {
     const url = `${advertBaseUrl}/adverts`;
     return client.get(url);
-}
+};
+
+export const getTags = () => {
+    const url = `${advertBaseUrl}/adverts/tags`;
+    return client.get(url)
+};
 
 export const publishAdvert = advertData => {
     const url = `${advertBaseUrl}/adverts`;
@@ -18,8 +23,8 @@ export const publishAdvert = advertData => {
         headers: {
             "Content-Type": "multipart/form-data"
         }
-    })
-}
+    });
+};
 
 export const filteredAdverts = filterAdvert => {
     let filterAdvertsUrl = '/adverts'
@@ -40,20 +45,20 @@ export const filteredAdverts = filterAdvert => {
             } else {
                 filterAdvertsUrl += `${operator}${filter}=${filterAdvert[filter]}`
                 if (!isFirstParam) isFirstParam = true
-            }
-        }
-    })
+            };
+        };
+    });
 
     const url = `${advertBaseUrl}${filterAdvertsUrl}`
     return client.get(url);
-}
+};
 
 export const getAdvertDetail = advertPageId => {
     const url = `${advertBaseUrl}/adverts/${advertPageId}`
     return client.get(url)
-}
+};
 
 export const deleteAdvert = advertPageId => {
      const url = `${advertBaseUrl}/adverts/${advertPageId}`
      return client.delete(url)
-}
+};

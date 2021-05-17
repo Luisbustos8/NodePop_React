@@ -7,7 +7,7 @@ import './LoginPage.css';
 
 function RegisterPage() {
 
-    console.log(register)
+    
 
     return (
         <Layout>

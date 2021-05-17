@@ -6,11 +6,13 @@ import NewAdvertForm from './NewAdvertForm';
 
 
 
-const NewAdvertPage = ({ onPublishAdvert,   ...props}) => {
+
+const NewAdvertPage = ({ onPublishAdvert,  ...props}) => {
 
     const [error, setError] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     const [newAdvert, setNewAdvert] = React.useState(false);
+
 
     const handleSubmit = async advertData => {
         try {

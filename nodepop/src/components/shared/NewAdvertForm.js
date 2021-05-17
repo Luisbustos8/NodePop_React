@@ -5,7 +5,7 @@ import Button from '../shared/Button';
 import Checkbox from './Checkbox';
 import SelectForm from './SelectForm';
 import T from 'prop-types';
-
+import {getTags} from '../../api/adverts';
 
 function NewAdvertForm({onSubmit}) {
 
@@ -54,12 +54,11 @@ function NewAdvertForm({onSubmit}) {
     ]
 
    
+
     const [file, setFile] = React.useState();
 
     const handleChange = event => {
-        
         const file = event.target.files[0];
-        console.log({file})
         setFile(file);
     }
       
