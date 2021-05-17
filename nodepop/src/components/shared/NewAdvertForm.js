@@ -53,8 +53,6 @@ function NewAdvertForm({onSubmit}) {
         'work'
     ]
 
-   
-
     const [file, setFile] = React.useState();
 
     const handleChange = event => {
